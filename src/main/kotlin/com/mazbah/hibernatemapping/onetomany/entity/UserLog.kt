@@ -8,9 +8,9 @@ import javax.persistence.*
 data class UserLog(
     @Id @Column(name = "id") @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null,
     @Column(name = "log") var log: String? = null,
-    @Column(name = "log_user_no") var logUserNo: Long? = null,
+    @Column(name = "user_no") var userNo: Long? = null,
 
-    @ManyToOne(cascade = [(CascadeType.ALL)])
-    @JoinColumn(name = "log_user_no", referencedColumnName = "id", updatable = false, insertable = false)
-    var user: User? = null
+    @ManyToOne(cascade = [(CascadeType.ALL)],fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_no", referencedColumnName = "one_id", updatable = false, insertable = false)
+    var userOne: UserOne? = null
 ) : Serializable

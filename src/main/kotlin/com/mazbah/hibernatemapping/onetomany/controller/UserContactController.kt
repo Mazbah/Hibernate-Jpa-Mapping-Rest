@@ -13,6 +13,12 @@ class UserContactController(private val userContactRepository: UserContactReposi
         return userContactRepository.findAll()
     }
 
+    @GetMapping("/clear")
+    fun clear(): String {
+        userContactRepository.deleteAll()
+        return "OK"
+    }
+
     @PostMapping("/update")
     fun update(@RequestBody userContact: UserContact): UserContact {
         return userContactRepository.save(userContact)

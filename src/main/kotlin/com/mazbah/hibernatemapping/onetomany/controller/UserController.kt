@@ -14,6 +14,12 @@ class UserController (private val usersRepository: UserRepository)
         return usersRepository.findAll()
     }
 
+    @GetMapping("/clear")
+    fun clear(): String {
+        usersRepository.deleteAll()
+        return "OK"
+    }
+
     @GetMapping("/name")
     fun getUser(@RequestParam("name") name: String): User {
         return usersRepository.findByName(name)
